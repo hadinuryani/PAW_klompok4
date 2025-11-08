@@ -15,3 +15,7 @@ USE Case:
 - edit profil 
 - dapat melihat daftar koleksi buku
 - request peminjaman buku
+
+gambaran umum sistem univlib
+- Pemustaka (mahasiswa/dosen) bisa login, melihat buku, dan meminjam.
+- Administrator (pustakawan) bisa login untuk mengelola buku dan memproses peminjaman.
