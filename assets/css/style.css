@@ -5,6 +5,20 @@
     box-sizing: border-box;
 }
 body{
-    background-color: pink;
+    height: 1000vh;
+}
+header {
+  height: 50vh;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/cakra.jpg");
+  background-size: cover;
+  background-position: center;
+  background-position: center 50%; 
+  background-repeat: no-repeat;
+}
 
+
+header .logo img{
+    width: 10%;
 }

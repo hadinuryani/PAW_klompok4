@@ -1,0 +1,1 @@
+<!-- $query = "SELECT * FROM pemustaka WHERE username='$username' AND password='$password'"; -->
