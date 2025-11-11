@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
 <head><meta charset="utf-8"><title>Login - UnivLib</title></head>
 <body>
 
-  <h1>Login</h1>
+  <h1>Login terus</h1>
 
   <?php if (!empty($error)): ?>
     <p style="color:red;"><?php echo $error; ?></p>
