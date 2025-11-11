@@ -1,24 +1,304 @@
-/* reset dasar */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =============== FONT =============== */
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Regular.ttf');
 }
-body{
-    height: 1000vh;
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.ttf');
 }
-header {
-  height: 50vh;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../img/cakra.jpg");
-  background-size: cover;
-  background-position: center;
-  background-position: center 50%; 
-  background-repeat: no-repeat;
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.ttf');
+}
+/* =============== RESET =============== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', 'Montserrat', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+/* =============== HEADER STYLE =============== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px 40px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* LOGO */
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .logo img {
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.571);
+}
+
+/* SEARCH BAR */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  background-color: #f1f3f4;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  padding: 8px;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+/* PROFILE SECTION */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-pic {
+  position: relative;
+  width: 45px;
+  height: 45px;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* Tombol Edit (SVG) */
+.edit-btn {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 3px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #2d8b57;
+  color: #fff;
+}
+
+/* Username */
+.profile span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Tombol Logout */
+.logout-btn {
+  padding: 10px 14px;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
 }
 
 
-header .logo img{
-    width: 10%;
+.main-layout {
+  height: 90vh;
+  display: grid;
+  grid-template-columns: 220px 1fr ;
+  gap: 20px;
+  padding: 20px;
 }
+
+/* Sidebar kiri */
+.sidebar {
+  
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #2d8b57;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.sidebar ul li {
+  margin: 8px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.create-shelf {
+  background-color: #2d8b57;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Konten buku */
+.content h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+  gap: 20px;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 6px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.book-card h3 {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.book-card p {
+  font-size: 13px;
+  color: #777;
+}
+
+.book-detail {
+  display: flex;
+  gap: 25px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.book-detail img {
+  width: 260px;
+  border-radius: 8px;
+}
+
+.detail-info {
+  flex: 1;
+}
+
+.borrow-btn {
+  margin-top: 15px;
+  display: inline-block;
+  background: #2d8b57;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.borrow-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+}
+
+.borrow-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+}
+
+.riwayat-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.riwayat-table th,
+.riwayat-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+}
+
+.profile-photo {
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.save-btn {
+  background: #2d8b57;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
