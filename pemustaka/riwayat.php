@@ -48,9 +48,7 @@ require_once 'components/header.php';
             </tr>
             <?php endforeach; ?>
 
-            <p>
-                
-            </p>
+            <p></p>
 
         </table>
     </section>
