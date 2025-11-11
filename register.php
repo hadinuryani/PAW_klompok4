@@ -88,5 +88,5 @@ require_once 'components/header.php';
 </form>
 
 <p>Sudah punya akun? <a href="login.php">Login</a></p>
-
+<h1></h1>
 <?php require_once 'components/footer.php'; ?>
