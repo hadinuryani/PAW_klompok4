@@ -1,8 +1,14 @@
 <?php
 require_once '../config/function.php';
 
-// Ambil data dari database lewat fungsi GetPemustaka()
-$pemustaka = GetPemustaka();
+$query = "SELECT id_pemustaka, 
+                nama_pemustaka, 
+                email_pemustaka, 
+                nim_nip_pemustaka, 
+                profil_pemustaka
+                FROM pemustaka";
+$pemustaka = getData($query);
+
 ?>
 
 <!DOCTYPE html>

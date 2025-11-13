@@ -1,12 +1,8 @@
 <?php
 require_once '../config/function.php';
 require_once '../config/config.php'; 
-$query =  "SELECT id_buku, judul, penulis, penerbit, tahun_terbit, cover, kategori, deskripsi 
-                FROM buku 
-                WHERE judul LIKE :search 
-                   OR penulis LIKE :search 
-                   OR penerbit LIKE :search 
-                ORDER BY id_buku DESC";
+$query =  "SELECT id_buku,judul,penulis,penerbit,kategori FROM buku";
+$buku = getData($query);
 
  ?>
 
@@ -19,10 +15,30 @@ $query =  "SELECT id_buku, judul, penulis, penerbit, tahun_terbit, cover, katego
     <title>Document</title>
 </head>
 <body>
+    <h1>kelola koleksi buku</h1>
     <table>
         <tr>
-            <th></th>
+            <th>No</th>
+            <th>judul Buku</th>
+            <th>penulis</th>
+            <th>penerbit</th>
+            <th>kategori</th>
+            <th>aksi</th>
         </tr>
+        <?php $no=1; foreach($buku as $b) :?>
+            <tr>
+                <td><?= $no ?></td>
+                <td><?= $b['judul']; ?></td>
+                <td><?= $b['penulis']; ?></td>
+                <td><?= $b['penerbit']; ?></td>
+                <td><?= $b['kategori']; ?></td>
+                <td>
+                    <a href="<?= BASE_URL; ?>/administrator/delete.php?id_buku=<?= $b['id_buku']; ?>">Delete</a>
+                    <a href="/update">Update</a>
+                </td>
+            </tr>
+            <?php $no++; ?>
+        <?php endforeach ?>
     </table>    
 </body>
 </html>

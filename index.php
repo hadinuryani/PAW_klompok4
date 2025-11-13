@@ -33,12 +33,13 @@ if (!empty($where)) {
     $sql .= " WHERE " . implode(" AND ", $where);
 }
 $sql .= " ORDER BY id_buku DESC LIMIT 10";
-$books = getData($sql, $params);
+$books =  getDataFilterSerch($sql, $params);
 
 require_once 'components/header.php';
 ?>
 
 <main class="main-layout">
+    
     <?php require_once 'components/nav.php'; ?>
 
     <section class="content">
