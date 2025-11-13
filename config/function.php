@@ -82,3 +82,12 @@ function createPeminjaman(array $data){
         ':status'       => $data['status']
     ]);
 }
+
+
+
+
+
+
+
+
+// fungsi untuk administrator
