@@ -82,3 +82,26 @@ function createPeminjaman(array $data){
         ':status'       => $data['status']
     ]);
 }
+function GetPemustaka() {
+    try {
+        // Query ambil semua data pemustaka
+        $sql = "SELECT 
+                    id_pemustaka, 
+                    nama_pemustaka, 
+                    email_pemustaka, 
+                    nim_nip_pemustaka, 
+                    profil_pemustaka
+                FROM pemustaka";
+
+        $stmnt = DBH->prepare($sql);
+        $stmnt->execute();
+
+        // Ambil semua hasil sebagai array asosiatif
+        $data = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    } catch (PDOException $e) {
+        echo "Gagal mengambil data pemustaka: " . $e->getMessage();
+        return [];
+    }
+}
