@@ -13,8 +13,8 @@
         </div>
 
         <form class="search-bar" action="#" method="get">
-            <input type="text" name="search" placeholder="Search books, authors...">
-            <button type="submit"><i class="fa fa-search"></i></button>
+            <input type="text" name="q" placeholder="Search books, authors..." value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>">
+            <button type="submit">&#128269;</button>
         </form>
 
         <div class="profile">
@@ -30,7 +30,6 @@
                 </button>
             </div>
             <span>username dummy</span>
-            <button class="logout-btn">Logout</button>
         </div>
     </header>
 

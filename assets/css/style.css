@@ -11,6 +11,7 @@
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat-Regular.ttf');
 }
+
 /* =============== RESET =============== */
 * {
   margin: 0;
@@ -24,7 +25,7 @@ body {
   color: #333;
 }
 
-/* =============== HEADER STYLE =============== */
+/* =============== HEADER (FIXED) =============== */
 .header {
   display: flex;
   align-items: center;
@@ -32,12 +33,15 @@ body {
   background-color: #fff;
   padding: 15px 40px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  position: sticky;
+
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-/* LOGO */
 .header .logo {
   display: flex;
   align-items: center;
@@ -98,7 +102,6 @@ body {
   border: 2px solid #ddd;
 }
 
-/* Tombol Edit (SVG) */
 .edit-btn {
   position: absolute;
   bottom: -5px;
@@ -113,7 +116,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all .2s ease;
+  transition: .2s ease;
 }
 
 .edit-btn:hover {
@@ -121,14 +124,14 @@ body {
   color: #fff;
 }
 
-/* Username */
 .profile span {
   font-size: 15px;
   font-weight: 500;
 }
 
-/* Tombol Logout */
+/* LOGOUT BUTTON */
 .logout-btn {
+  margin-top: auto;
   padding: 10px 14px;
   border: none;
   background-color: #e74c3c;
@@ -136,29 +139,35 @@ body {
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  transition: .3s ease;
 }
 
 .logout-btn:hover {
   background-color: #c0392b;
 }
 
-
+/* =============== MAIN LAYOUT =============== */
 .main-layout {
-  height: 90vh;
-  display: grid;
-  grid-template-columns: 220px 1fr ;
-  gap: 20px;
-  padding: 20px;
+  margin-left: 240px;
+  padding: 120px 20px 20px 20px;
 }
 
-/* Sidebar kiri */
+/* =============== SIDEBAR (FIXED) =============== */
 .sidebar {
-  
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 0 6px rgba(0,0,0,0.1);
+
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar h2 {
@@ -173,13 +182,19 @@ body {
 }
 
 .sidebar ul li {
-  margin: 8px 0;
+  padding: 9px 10px;
+  border-radius: 10px;
 }
 
 .sidebar ul li a {
   text-decoration: none;
   color: #333;
   font-size: 14px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li:active {
+  background-color: #dde1e1;
 }
 
 .create-shelf {
@@ -191,100 +206,159 @@ body {
   cursor: pointer;
 }
 
-/* Konten buku */
-.content h2 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
+/* =============== BOOK GRID =============== */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 24px;
 }
 
 .book-card {
-  background-color: #fff;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 14px;
   padding: 10px;
-  text-align: center;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: .25s ease;
+}
+
+.book-card:hover {
+  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
 }
 
 .book-card img {
   width: 100%;
-  border-radius: 6px;
-  height: 200px;
+  border-radius: 10px;
+  height: 230px;
   object-fit: cover;
+  margin-bottom: 12px;
 }
 
 .book-card h3 {
-  font-size: 14px;
-  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1b1b1b;
+  margin-bottom: 8px;
+
+  /* Biar rapi walau panjang */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.book-card p {
+/* BUTTON DETAIL */
+.btn-detail {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 6px;
   font-size: 13px;
-  color: #777;
+  text-decoration: none;
+  transition: .2s ease;
 }
 
-.book-detail {
+.btn-detail:hover {
+  background: #c0392b;
+}
+
+/* =============== BOOK DETAIL PAGE (FIX) =============== */
+.detail-book {
   display: flex;
   gap: 25px;
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 14px;
+  /* align-items: flex-start; */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
 }
+/* 
+.detail-info h2{
+  border-bottom: 1000px;
+} */
 
-.book-detail img {
+.detail-book img.detail-cover {
   width: 260px;
-  border-radius: 8px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .detail-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.borrow-btn {
-  margin-top: 15px;
-  display: inline-block;
+.detail-info p {
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.btn-pinjam {
+  margin-top: 20px;
   background: #2d8b57;
   color: #fff;
-  padding: 10px 16px;
+  padding: 11px 18px;
+  border: none;
   border-radius: 8px;
-  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .2s;
 }
 
+.btn-pinjam:hover {
+  background: #247347;
+}
+
+/* =============== BORROW BOX =============== */
 .borrow-box {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   width: 350px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .borrow-box input {
   width: 100%;
   padding: 10px;
   margin: 6px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
+/* =============== TABLE =============== */
 .riwayat-table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .riwayat-table th,
 .riwayat-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
 }
 
+/* =============== PROFILE PAGE =============== */
 .profile-box {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.1);
 }
 
 .profile-photo {
@@ -300,5 +374,133 @@ body {
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  transition: .2s;
 }
 
+.save-btn:hover {
+  background: #247347;
+}
+
+
+.kategori-filter {
+  margin: 10px 0 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kategori-filter a {
+  background: #f2f2f2;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.kategori-filter a:hover {
+  background: #ddd;
+}
+
+.kategori-filter a.active {
+  background: #24c6fb;
+  color: #ffffff;
+}
+
+/* alert */
+
+.card {
+  max-width: 320px;
+  border-width: 1px;
+  border-color: rgba(219, 234, 254, 1);
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: rgba(96, 165, 250, 1);
+  padding: 0.5rem;
+  color: rgba(255, 255, 255, 1);
+}
+.closeButton {
+  border: none;
+  margin-left: 23%;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  height: 2rem;
+  width: 2rem;
+  display: grid;
+  place-items: center;
+  transition: background-color ease 0.25s;
+}
+.closeButton:hover {
+  background-color: rgba(230, 25, 25, 1);
+  color: white;
+}
+.icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.alert {
+  font-weight: 600;
+  color: rgba(107, 114, 128, 1);
+}
+
+.message {
+  margin-top: 1rem;
+  color: rgba(107, 114, 128, 1);
+}
+
+.actions {
+  margin-top: 1.5rem;
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.mark-as-read,
+.read {
+  display: inline-block;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.read {
+  background-color: rgba(59, 130, 246, 1);
+  color: rgba(255, 255, 255, 1);
+}
+.read:hover {
+  background-color: rgba(17, 104, 245, 1);
+}
+
+.mark-as-read {
+  margin-top: 0.5rem;
+  background-color: rgba(249, 250, 251, 1);
+  color: rgba(107, 114, 128, 1);
+  transition: all 0.15s ease;
+}
+
+.mark-as-read:hover {
+  background-color: rgb(230, 231, 233);
+}

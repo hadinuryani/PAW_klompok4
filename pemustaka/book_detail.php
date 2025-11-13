@@ -19,17 +19,18 @@ require_once '../components/header.php';
     <?php require_once '../components/nav.php'; ?>
 
     <section class="content">
-        <h2><?= $book['judul']; ?></h2>
-
+        
         <div class="detail-book">
             <img src="<?= $book['cover']; ?>" class="detail-cover">
-
+            
             <div class="detail-info">
+                <h2><?= $book['judul']; ?></h2>
                 <p><b>Penulis:</b> <?= $book['penulis']; ?></p>
                 <p><b>Penerbit:</b> <?= $book['penerbit']; ?></p>
                 <p><b>Tahun:</b> <?= $book['tahun_terbit']; ?></p>
-                <p><b>Deskripsi:</b></p>
-                <p><?= $book['deskripsi']; ?></p>
+                <p><b>Kategori:</b><?= $book['kategori']; ?></p>
+                <p><b>Deskripsi:</b><?= $book['deskripsi']; ?></p>
+
 
                 <form action="borrow.php" method="POST">
                     <input type="hidden" name="id_buku" value="<?= $id; ?>">

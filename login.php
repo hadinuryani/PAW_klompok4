@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
             $error = "Identitas atau password salah";
         } else {
             // Set session
-            $_SESSION['user_id']   = $user['id_pemustaka'];
+            $_SESSION['user_id']  = $user['id_pemustaka'];
             $_SESSION['user_name'] = $user['nama_pemustaka'];
             $_SESSION['logged_in'] = true;
 
