@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config/database.php';
+require_once 'config/config.php';
 require_once 'config/function.php';
 
 if (isset($_POST['login'])) {
@@ -19,8 +19,8 @@ if (isset($_POST['login'])) {
             // Set session
             $_SESSION['user_id']  = $user['id_pemustaka'];
             $_SESSION['user_name'] = $user['nama_pemustaka'];
-            $_SESSION['logged_in'] = true;
-
+            $_SESSION['role'] = 'pemustaka';
+            $_SESSION['profil_pemustaka'] = $user['profil_pemustaka'];
             // Redirect ke dashboard
             header("Location: index.php");
             exit;
@@ -28,32 +28,37 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<!doctype html>
-<html lang="id">
-<head><meta charset="utf-8"><title>Login - UnivLib</title></head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="<?= BASE_URL; ?>assets/css/auth.css">
+  <title>Login</title>
+</head>
 <body>
+<body>
+  <div class="container">
+    <h1>Login UnivLib</h1>
 
-  <h1>Login terus</h1>
+    <?php if (!empty($error)): ?>
+      <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
-  <?php if (!empty($error)): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-  <?php endif; ?>
-
-  <form method="post" action="login.php">
-    <label>
-      Email / NIM / NIP:
+    <form method="post" action="#">
+      <label>Email :</label>
       <input type="text" name="identity" />
-    </label><br/>
 
-    <label>
-      Password:
+      <label>Password:</label>
       <input type="password" name="password" />
-    </label><br/>
 
-    <button type="submit" name="login">Login</button>
-  </form>
+      <button type="submit" name="login">Login</button>
+    </form>
 
-  <p><a href="register.php">Daftar akun baru</a></p>
+    <p>Belum punya akun? <a href="register.php">Daftar akun baru</a></p>
+  </div>
+</body>
 
 </body>
 </html>

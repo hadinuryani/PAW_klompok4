@@ -1,6 +1,7 @@
 <?php 
 
-const BASE_URL = "http://localhost/paw_klompok4/";
+define('BASE_URL', 'https://acronymous-overcoolly-shana.ngrok-free.dev/paw_klompok4/');
+
 
 // konfigurasi database
 const DB_HOST = "localhost";

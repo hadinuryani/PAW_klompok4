@@ -1,44 +1,50 @@
 <?php
+session_start();
 require_once '../config/function.php';
 require_once '../config/config.php'; 
+// cek apkah sesion sudah di set 
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['user_name']))){
+    header("Location:" .BASE_URL . 'login.php');
+}
+$data['title'] = 'kelola buku';
+$data['css'] = ['style.css','tabel.css'];
+
 $query =  "SELECT id_buku,judul,penulis,penerbit,kategori FROM buku";
-$buku = getData($query);
+$buku = fetchData($query);
 
+require_once '../components/header.php';
  ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>kelola koleksi buku</h1>
-    <table>
-        <tr>
-            <th>No</th>
-            <th>judul Buku</th>
-            <th>penulis</th>
-            <th>penerbit</th>
-            <th>kategori</th>
-            <th>aksi</th>
-        </tr>
-        <?php $no=1; foreach($buku as $b) :?>
+<main class="main-layout">
+    <?php require_once '../components/nav.php'; ?>
+    <section class="content">
+        <h1>kelola koleksi buku</h1>
+        <table>
             <tr>
-                <td><?= $no ?></td>
-                <td><?= $b['judul']; ?></td>
-                <td><?= $b['penulis']; ?></td>
-                <td><?= $b['penerbit']; ?></td>
-                <td><?= $b['kategori']; ?></td>
-                <td>
-                    <a href="<?= BASE_URL; ?>/administrator/delete.php?id_buku=<?= $b['id_buku']; ?>">Delete</a>
-                    <a href="/update">Update</a>
-                </td>
+                <th>No</th>
+                <th>judul Buku</th>
+                <th>penulis</th>
+                <th>penerbit</th>
+                <th>kategori</th>
+                <th>aksi</th>
             </tr>
-            <?php $no++; ?>
-        <?php endforeach ?>
-    </table>    
-</body>
-</html>
+            <?php $no=1; foreach($buku as $b) :?>
+                <tr>
+                    <td><?= $no ?></td>
+                    <td><?= $b['judul']; ?></td>
+                    <td><?= $b['penulis']; ?></td>
+                    <td><?= $b['penerbit']; ?></td>
+                    <td><?= $b['kategori']; ?></td>
+                    <td>
+                        <a href="update_buku.php?id_buku=<?= $b['id_buku']; ?>">Update</a> |
+                        <a href="konfirmasi.php?id_buku=<?= $b['id_buku']; ?>" >Delete</a>
+                    </td>
+
+                </tr>
+                <?php $no++; ?>
+            <?php endforeach ?>
+        </table>    
+    </section>
+</main>
+
+    
+<?php require_once '../components/footer.php' ?>

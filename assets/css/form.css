@@ -1,6 +1,69 @@
-*{
-    margin: 0;
-    padding: 0;
+
+/* ===== Heading ===== */
+.content h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* ===== Form Elements ===== */
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
     box-sizing: border-box;
 }
 
+form textarea {
+    resize: vertical;
+}
+
+/* ===== File Input ===== */
+form input[type="file"] {
+    margin-bottom: 20px;
+}
+
+/* ===== Button ===== */
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .content {
+        padding: 20px;
+    }
+
+    form button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,203 @@
+
+/* =============== BOOK GRID =============== */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 24px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: .25s ease;
+}
+
+.book-card:hover {
+  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 230px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.book-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1b1b1b;
+  margin-bottom: 8px;
+
+  /* Biar rapi walau panjang */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* BUTTON DETAIL */
+.btn-detail {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.btn-detail:hover {
+  background: #c0392b;
+}
+
+/* =============== BOOK DETAIL PAGE  =============== */
+.detail-book {
+  display: flex;
+  gap: 25px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  align-items: flex-start;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+}
+
+.detail-book .detail-info h2{
+    font-size: 40px;
+  padding-bottom: 20px;
+}
+
+.detail-book img.detail-cover {
+  width: 260px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-info p {
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.btn-pinjam {
+  margin-top: 20px;
+  background: #2d8b57;
+  color: #fff;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.btn-pinjam:hover {
+  background: #247347;
+}
+
+/* =============== BORROW BOX =============== */
+.borrow-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.borrow-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* =============== TABLE =============== */
+.riwayat-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.riwayat-table th,
+.riwayat-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* =============== PROFILE PAGE =============== */
+.profile-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.1);
+}
+
+.profile-photo {
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.save-btn {
+  background: #2d8b57;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.save-btn:hover {
+  background: #247347;
+}
+
+
+.kategori-filter {
+  margin: 10px 0 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kategori-filter a {
+  background: #f2f2f2;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.kategori-filter a:hover {
+  background: #ddd;
+}
+
+.kategori-filter a.active {
+  background: #24c6fb;
+  color: #ffffff;
+}

@@ -1,11 +1,10 @@
-<?php 
+<?php
 session_start();
-
+require_once 'config/function.php';
+require_once 'config/config.php'; 
 // set nama title dan css 
 $data['title'] = 'Dashboard';
-$data['css']   = 'style.css';
-require_once 'config/function.php';
-require_once 'config/config.php';
+$data['css'] = ['style.css', 'book.css'];
 
 // cek apkah sesion sudah di set 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['user_name']))){
@@ -27,21 +26,21 @@ if ($kat) {
     $where[] = "kategori = :kat";
     $params['kat'] = $kat;
 }
-// Bangun query
+// query
 $sql = "SELECT * FROM buku";
 if (!empty($where)) {
     $sql .= " WHERE " . implode(" AND ", $where);
 }
 $sql .= " ORDER BY id_buku DESC LIMIT 10";
-$books =  getDataFilterSerch($sql, $params);
+$books =  fetchData($sql, $params);
 
 require_once 'components/header.php';
 ?>
 
 <main class="main-layout">
-    
+    <!-- navbar -->
     <?php require_once 'components/nav.php'; ?>
-
+    <!-- content -->
     <section class="content">
     
         <!-- FILTER KATEGORI -->
@@ -57,7 +56,7 @@ require_once 'components/header.php';
         <div class="book-grid">
         <?php foreach($books as $book): ?>
             <div class="book-card">
-                <img src="<?= $book['cover']; ?>" alt="">
+                <img src="<?= BASE_URL ?>assets/img/<?= $book['cover'] ?>" alt="<?= $book['cover']; ?>">
                 <h3><?= $book['judul']; ?></h3>
                 <a class="btn-detail" href="pemustaka/book_detail.php?id=<?= $book['id_buku']; ?>">Show Detail</a>
             </div>

@@ -1,0 +1,77 @@
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Table header */
+table th {
+    border:1px solid #fff;
+    background: #24c6fb;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Table body */
+table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Zebra stripe effect */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect */
+table tr:hover {
+    background-color: #e8f0fe;
+    transition: background-color 0.3s ease;
+}
+
+/* Action links */
+table td a {
+    color: #4e73df;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+td img{
+    width: 40%;
+}
+table td a:hover {
+    color: #224abe;
+    text-decoration: underline;
+}
+
+/* Optional: rounded table corners for first and last row */
+table tr:first-child td:first-child {
+    border-top-left-radius: 12px;
+}
+table tr:first-child td:last-child {
+    border-top-right-radius: 12px;
+}
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}

@@ -12,81 +12,81 @@ if (isset($_POST['register'])) {
 
   // validasi password
   if ($password !== $password_confirm) {
-    $data['alert'] = 'Konfirmasi password tidak sesuai';
-    require 'components/alert.php';
-    die;
-  }
-
-  // cek apakah email atau nim/nip sudah ada
-  $cek = getData(
-    "SELECT id_pemustaka FROM pemustaka 
-     WHERE email_pemustaka = :email OR nim_nip_pemustaka = :nim",
-    [
-      ':email' => $email,
-      ':nim'   => $nim_nip
-    ]
-  );
-
-  if (!empty($cek)) {
-    $data['alert'] = 'Email atau NIM/NIP sudah terdaftar';
-    require 'components/alert.php';
-    die;
-  }
-
-  // hash password
-  $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-  // insert data
-  $insert = registerPemustaka([
-    'nama_pemustaka' => $nama,
-    'email'          => $email,
-    'nim_nip'        => $nim_nip,
-    'password'       => $password_hash
-  ]);
-
-  if ($insert) {
-    $data['alert'] = 'Registrasi berhasil, silakan login.';
-    require 'components/alert.php';
+    $error = 'Konfirmasi password tidak sesuai';
   } else {
-    $data['alert'] = 'Terjadi kesalahan saat registrasi.';
-    require 'components/alert.php';
+    // cek apakah email atau nim/nip sudah ada
+    $cek = fetchData(
+      "SELECT id_pemustaka FROM pemustaka 
+       WHERE email_pemustaka = :email OR nim_nip_pemustaka = :nim",
+      [
+        ':email' => $email,
+        ':nim'   => $nim_nip
+      ]
+    );
+
+    if (!empty($cek)) {
+      $error = 'Email atau NIM/NIP sudah terdaftar';
+    } else {
+      // hash password
+      $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+      // insert data
+      $insert = registerPemustaka([
+        'nama_pemustaka' => $nama,
+        'email'          => $email,
+        'nim_nip'        => $nim_nip,
+        'password'       => $password_hash
+      ]);
+
+      if ($insert) {
+        $success = 'Registrasi berhasil! Silakan login.';
+      } else {
+        $error = 'Terjadi kesalahan saat registrasi.';
+      }
+    }
   }
 }
-
-require_once 'components/header.php';
 ?>
 
-<h1>Register Akun Pemustaka</h1>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <title>Register - UnivLib</title>
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
 
-<form method="post" action="register.php">
-  <label>
-    Nama Lengkap:
-    <input type="text" name="nama"/>
-  </label><br/>
+  <div class="container">
+    <h1>Daftar Akun UnivLib</h1>
 
-  <label>
-    NIM / NIP:
-    <input type="text" name="nim_nip"/>
-  </label><br/>
+    <?php if (!empty($error)): ?>
+      <p style="color:red;"><?php echo $error; ?></p>
+    <?php elseif (!empty($success)): ?>
+      <p style="color:green;"><?php echo $success; ?></p>
+    <?php endif; ?>
 
-  <label>
-    Email:
-    <input type="text" name="email"/>
-  </label><br/>
+    <form method="post" action="register.php">
+      <label>Nama Lengkap:</label>
+      <input type="text" name="nama" required>
 
-  <label>
-    Password:
-    <input type="password" name="password"/>
-  </label><br/>
+      <label>NIM / NIP:</label>
+      <input type="text" name="nim_nip" required>
 
-  <label>
-    Konfirmasi Password:
-    <input type="password" name="password_confirm"/>
-  </label><br/>
+      <label>Email:</label>
+      <input type="email" name="email" required>
 
-  <button type="submit" name="register">Daftar</button>
-</form>
+      <label>Password:</label>
+      <input type="password" name="password" required>
 
-<p>Sudah punya akun? <a href="login.php">Login</a></p>
+      <label>Konfirmasi Password:</label>
+      <input type="password" name="password_confirm" required>
 
-<?php require_once 'components/footer.php'; ?>
+      <button type="submit" name="register">Daftar</button>
+    </form>
+
+    <p>Sudah punya akun? <a href="login.php">Login</a></p>
+  </div>
+
+</body>
+</html>
